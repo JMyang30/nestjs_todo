@@ -28,20 +28,10 @@ export class TodoService {
   }
 
   // 단일 수정
-  async updateTodoItem(
-    id: number,
-    title: string,
-    content: string,
-    is_done: boolean,
-  ): Promise<Todo | null> {
-    return this.prismaService.todo.update({
+  async updateTodoItem(id: number): Promise<Todo | null> {
+    return this.prismaService.todo.delete({
       where: {
         id: Number(id),
-      },
-      data: {
-        title,
-        content,
-        is_done,
       },
     });
   }

@@ -34,12 +34,7 @@ export class TodoController {
     @Param(':id') id: number,
     @Body() data: Todo,
   ): Promise<Todo | null> {
-    return this.todoService.updateTodoItem(
-      id,
-      data.title,
-      data.content,
-      data.is_done,
-    );
+    return this.todoService.updateTodoItem(id, ...data);
   }
 
   @Post()

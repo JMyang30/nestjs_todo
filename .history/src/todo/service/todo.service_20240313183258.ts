@@ -27,21 +27,11 @@ export class TodoService {
     });
   }
 
-  // 단일 수정
-  async updateTodoItem(
-    id: number,
-    title: string,
-    content: string,
-    is_done: boolean,
-  ): Promise<Todo | null> {
-    return this.prismaService.todo.update({
+  // 단일 삭제
+  async deleteTodoItem(id: number): Promise<Todo | null> {
+    return this.prismaService.todo.delete({
       where: {
         id: Number(id),
-      },
-      data: {
-        title,
-        content,
-        is_done,
       },
     });
   }

@@ -32,7 +32,6 @@ export class TodoService {
     id: number,
     title: string,
     content: string,
-    is_done: boolean,
   ): Promise<Todo | null> {
     return this.prismaService.todo.update({
       where: {

@@ -27,27 +27,8 @@ export class TodoService {
     });
   }
 
-  // 단일 수정
-  async updateTodoItem(
-    id: number,
-    title: string,
-    content: string,
-    is_done: boolean,
-  ): Promise<Todo | null> {
-    return this.prismaService.todo.update({
-      where: {
-        id: Number(id),
-      },
-      data: {
-        title,
-        content,
-        is_done,
-      },
-    });
-  }
-
   // 단일 추가
-  async addTodoItem(data: Todo): Promise<Todo | null> {
-    return this.prismaService.todo.create({ data: data });
+  async addTodoItem(title: String, content: String): Promise<Todo | null> {
+    return;
   }
 }
