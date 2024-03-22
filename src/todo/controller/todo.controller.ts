@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { TodoService } from '../service/todo.service';
 import { Todo } from '@prisma/client';
-
+import { TodoDto, UpdateTodoDto } from '../dto/todo.dto';
 @Controller('api/v1/todos')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
@@ -21,6 +21,7 @@ export class TodoController {
 
   @Get(':id')
   async fetchTodoItem(@Param('id') id: number): Promise<Todo | null> {
+    console.log(typeof id);
     return this.todoService.fetchTodoItem(id);
   }
 
@@ -31,8 +32,8 @@ export class TodoController {
 
   @Put(':id')
   async updateTodoItem(
-    @Param(':id') id: number,
-    @Body() data: Todo,
+    @Param('id') id: number,
+    @Body() data: UpdateTodoDto,
   ): Promise<Todo | null> {
     return this.todoService.updateTodoItem(
       id,
@@ -43,7 +44,7 @@ export class TodoController {
   }
 
   @Post()
-  async createTodoItem(@Body() data: Todo): Promise<Todo> {
+  async createTodoItem(@Body() data: TodoDto): Promise<Todo> {
     return this.todoService.addTodoItem(data);
   }
 }

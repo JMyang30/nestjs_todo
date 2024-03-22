@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../../prisma.service';
 import { Todo } from '@prisma/client';
+import { TodoDto } from '../dto/todo.dto';
 
 @Injectable()
 export class TodoService {
@@ -14,7 +15,7 @@ export class TodoService {
   // 단일 조회
   async fetchTodoItem(id: number): Promise<Todo | null> {
     return this.prismaService.todo.findUnique({
-      where: { id: Number(id) },
+      where: { id },
     });
   }
 
@@ -22,7 +23,7 @@ export class TodoService {
   async deleteTodoItem(id: number): Promise<Todo | null> {
     return this.prismaService.todo.delete({
       where: {
-        id: Number(id),
+        id,
       },
     });
   }
@@ -36,7 +37,7 @@ export class TodoService {
   ): Promise<Todo | null> {
     return this.prismaService.todo.update({
       where: {
-        id: Number(id),
+        id,
       },
       data: {
         title,
@@ -47,7 +48,7 @@ export class TodoService {
   }
 
   // 단일 추가
-  async addTodoItem(data: Todo): Promise<Todo | null> {
+  async addTodoItem(data: TodoDto): Promise<Todo | null> {
     return this.prismaService.todo.create({ data: data });
   }
 }
