@@ -20,3 +20,12 @@ model Todo {
   content  String?
   is_done Boolean? @default(false)
 }
+
+model User {
+  id  Int @default(autoincrement()) @id
+  email String
+  password String
+  nickname String
+  createdAt DateTime @default(dbgenerated("NOW()")) @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @db.DateTime
+}
