@@ -22,7 +22,7 @@ export class TodoController {
   @Get(':id')
   async fetchTodoItem(@Param('id') id: number): Promise<Todo | null> {
     console.log(typeof id);
-    return this.todoService.fetchTodoItem(id);
+    return this.todoService.fetchTodoItem({ id });
   }
 
   @Delete(':id')

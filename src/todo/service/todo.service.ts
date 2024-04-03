@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../../prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { Todo } from '@prisma/client';
 import { TodoDto } from '../dto/todo.dto';
 
@@ -13,8 +13,8 @@ export class TodoService {
   }
 
   // 단일 조회
-  async fetchTodoItem(id: number): Promise<Todo | null> {
-    return this.prismaService.todo.findUnique({
+  async fetchTodoItem({ id }: { id: number }): Promise<Todo | null> {
+    return this.prismaService.todo.findFirst({
       where: { id },
     });
   }
